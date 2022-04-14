@@ -216,7 +216,7 @@ function chars(input) {
 //     return foundSpouse;
 // }
 function findPersonFamily(person, displayPerson){
-    let spouseId = []
+    let spouseId = ''
     let personFamily = displayPerson.filter(function(el){
         if(person.id === el.currentSpouse){
             return true
@@ -224,10 +224,8 @@ function findPersonFamily(person, displayPerson){
 
     })
 
-    
-
-    spouseId += `First Name: ${personFamily.firstName}\n`
-    spouseId += `Last Name: ${personFamily.lastName}\n`
+    spouseId += `First Name: ${personFamily[0].firstName}\n`
+    spouseId += `Last Name: ${personFamily[0].lastName}\n`
     alert(spouseId)
     return(spouseId)
 }

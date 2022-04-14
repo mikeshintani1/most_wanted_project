@@ -194,32 +194,16 @@ function chars(input) {
 //////////////////////////////////////////* End Of Starter Code *//////////////////////////////////////////
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
 
-// function findPersonFamily(){
-//     let personFamily= data(function(el){
-//         if (el.currentSpouse === el.id){
-//             return true;
-//         }
-//     })
-//     return personFamily;
-// }
 
-// function findPersonFamily(people) {
-//     // let lastName = promptFor("What is the person's last name?", chars);
-//     let spouse = promptFor('What is ID?', chars)
-
-//     // The foundPerson value will be of type Array. Recall that .filter() ALWAYS returns an array.
-//     let foundSpouse = people.filter(function (el) {
-//         if (el.currentSpouse === spouse) {
-//             return true;
-//         }
-//     });
-//     return foundSpouse;
-// }
 function findPersonFamily(person, displayPerson){
     let spouseId = ''
+    let siblingId= ''
     let personFamily = displayPerson.filter(function(el){
         if(person.id === el.currentSpouse){
             return true
+        }
+        else if(person.currentSpouse == null){
+            return false
         }
 
     })
@@ -227,5 +211,13 @@ function findPersonFamily(person, displayPerson){
     spouseId += `First Name: ${personFamily[0].firstName}\n`
     spouseId += `Last Name: ${personFamily[0].lastName}\n`
     alert(spouseId)
-    return(spouseId)
+    
+    let personSibling= displayPerson.filter(function(el){
+        if(person.id == el.parents.includes('')){
+            return true
+        }
+    })
+    siblingId += `First Name: ${personSibling[0].firstName}`
+
+    
 }

@@ -215,14 +215,19 @@ function chars(input) {
 //     });
 //     return foundSpouse;
 // }
-function findPersonFamily(people, displayPerson){
+function findPersonFamily(person, displayPerson){
+    let spouseId = []
     let personFamily = displayPerson.filter(function(el){
-        if(el.id === people.currentSpouse){
+        if(person.id === el.currentSpouse){
             return true
         }
+
     })
-    personFamily += `First Name: ${people.firstName}\n`
-    personFamily += `Last Name: ${people.lastName}\n`
-    alert(personFamily)
-    return personFamily
+
+    
+
+    spouseId += `First Name: ${personFamily.firstName}\n`
+    spouseId += `Last Name: ${personFamily.lastName}\n`
+    alert(spouseId)
+    return(spouseId)
 }

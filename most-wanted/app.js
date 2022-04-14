@@ -178,7 +178,7 @@ function promptFor(question, valid) {
 function yesNo(input) {
     return input.toLowerCase() === "yes" || input.toLowerCase() === "no";
 }
-// End of yesNo()
+// End of yesNo() 
 
 /**
  * This helper function operates as a default callback for promptFor's validation.
@@ -193,3 +193,11 @@ function chars(input) {
 
 //////////////////////////////////////////* End Of Starter Code *//////////////////////////////////////////
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
+
+function findPersonFamily(personInfo){
+let personFamily= personInfo.filter(function(el){
+    if (el.currentSpouse == currentSpouse){
+        return true;
+    }
+    return personFamily;
+})}

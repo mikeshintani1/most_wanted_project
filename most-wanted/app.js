@@ -252,3 +252,13 @@ function findPersonFamily(person, people){
     // alert(personFamily)
 }
 
+function searchByTraits(people){
+
+    let traitEyeColors = promptFor('eye color: ', chars)
+    let personTrait = people.filter(function (el){
+        if(el.eyeColor == traitEyeColors){
+            alert(el.firstName);
+            return true
+        }
+
+})}

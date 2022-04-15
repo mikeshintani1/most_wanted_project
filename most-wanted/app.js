@@ -197,39 +197,41 @@ function chars(input) {
 
 function findPersonFamily(person, people){
     let spouseId = ''
+    
 
     if (person.currentSpouse == null){
-        alert( spouseId= 'Current Spouse: Currently Single' )}
+        return (spouseId= 'Current Spouse: No Current Spouse')}; 
 
-    else if (person.currentSpouse != null){
+    if (person.currentSpouse != null){
         let personSpouse = people.filter(function(el){
         if(el.id === person.currentSpouse){
             return true
         }})
-        spouseId = `First Name: ${personSpouse[0].firstName}\n`
-        spouseId += `Last Name: ${personSpouse[0].lastName}\n`
-        // return spouseId
-        alert(spouseId)
-    }
+        spouseId = `Cuurent Spouse: ${personSpouse[0].firstName} ${personSpouse[0].lastName}\n`
+        return (spouseId)
+    };
 
+    let parentId= ''
     let personsParents = person.parents;
     let familyMembers = people.filter(function (el){
         if (el.id === personsParents[0] || el.id == personsParents[1]){
             return true;}});
 
     if(familyMembers.length != 0) {
-        alert(familyMembers.map(function (person){
-            return `${person.firstName} ${person.lastName}`;
-            })
-            .join("\n"));
-            // return familyMembers;
-        }
+        let familyMembers= familyMembers.map(function (person){
+            `${person.firstName} ${person.lastName}`
+            .join("\n")})
+
+        familyMembers = parentId
+        return parentId}
 
     if(familyMembers.length == 0){
-        alert(`${person.firstName} ${person.lastName} Family: \n
+        return (parentId= (`${person.firstName} ${person.lastName} Family: \n
         \n
-        No parents in the system.`)}
+        No parents in the system.`))}
 
+
+    let siblingId=''
 
     if(person.parents.length != 0) {
         let siblingMembers= people.filter(function(el){
@@ -247,9 +249,9 @@ function findPersonFamily(person, people){
         \n
         No siblings in the system.`)
         return siblingId;}
-            
-    // let personFamily= `Current Spouse: ${spouseId}, Parents: ${familyMembers}, Siblings ${siblingMembers}`
-    // alert(personFamily)
+
+    let personFamily= (`Current Spouse: ${spouseId}\n, Parents: ${parentId}\n, Siblings: ${siblingId}`)
+    alert(personFamily)
 }
 
 function searchByTraits(people){

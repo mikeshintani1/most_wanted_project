@@ -210,7 +210,7 @@ function findPersonFamily(person, people){
         spouseId += `Last Name: ${personFamily[0].lastName}\n`
     let personsFamily= spouseId
     alert(personsFamily)
-}
+
 
     let personsParents = person.parents;
     let familyMembers = people.filter(function (el){
@@ -225,4 +225,22 @@ function findPersonFamily(person, people){
             return `${person.firstName} ${person.lastName}`;
             })
             .join("\n"))}
-    return (spouseId, familyMembers);}
+
+
+    let siblingMembers= people.filter(function(el){
+        if(el.parents[0] == person.parents[0] || el.parents[1] == person.parents[1]){
+            return true;
+        }})
+    if(person.parents.length == 0){
+        alert(`${person.firstName} ${person.lastName} Family: \n
+        \n
+        No siblings in the system.`)}
+    if(siblingMembers) {
+        alert(siblingMembers.map(function (person){
+            return `${person.firstName} ${person.lastName}`;
+            })
+            .join("\n"))}
+    }
+    return (spouseId, familyMembers, siblingId);
+}
+

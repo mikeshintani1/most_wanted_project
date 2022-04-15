@@ -195,29 +195,32 @@ function chars(input) {
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
 
 
-function findPersonFamily(person, displayPerson){
+function findPersonFamily(person, people){
     let spouseId = ''
-    let siblingId= ''
-    let personFamily = displayPerson.filter(function(el){
-        if(person.id === el.currentSpouse){
-            return true
-        }
-        else if(person.currentSpouse == null){
-            return false
-        }
+    // let siblingId= ''
 
-    })
+    if (person.currentSpouse == null){
+        return spouseId= 'Current Spouse: Currently Single' }
 
-    spouseId += `First Name: ${personFamily[0].firstName}\n`
-    spouseId += `Last Name: ${personFamily[0].lastName}\n`
-    alert(spouseId)
-    
-    let personSibling= displayPerson.filter(function(el){
-        if(person.id == el.parents.includes('')){
+    else if (person.currentSpouse != null){
+        let personFamily = people.filter(function(el){
+        if(el.id === person.currentSpouse){
             return true
-        }
-    })
-    siblingId += `First Name: ${personSibling[0].firstName}`
+        }})
+        spouseId = `First Name: ${personFamily[0].firstName}\n`
+        spouseId += `Last Name: ${personFamily[0].lastName}\n`
+    }
+
 
     
+
+    // let personSibling= displayPerson.filter(function(el){
+    //     if(person.id == el.parents.includes('')){
+    //         return true
+    //     }
+    // })
+    // siblingId += `First Name: ${personSibling[0].firstName}`
+
+    let personFamily= spouseId
+    alert(personFamily)
 }

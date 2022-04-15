@@ -197,8 +197,7 @@ function chars(input) {
 
 function findPersonFamily(person, people){
     let spouseId = ''
-    
-
+    // Working on Repairing the Alert Undefined
     if (person.currentSpouse == null){
         return (spouseId= 'Current Spouse: No Current Spouse')}; 
 

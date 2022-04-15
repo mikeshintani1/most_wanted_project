@@ -202,45 +202,53 @@ function findPersonFamily(person, people){
         alert( spouseId= 'Current Spouse: Currently Single' )}
 
     else if (person.currentSpouse != null){
-        let personFamily = people.filter(function(el){
+        let personSpouse = people.filter(function(el){
         if(el.id === person.currentSpouse){
             return true
         }})
-        spouseId = `First Name: ${personFamily[0].firstName}\n`
-        spouseId += `Last Name: ${personFamily[0].lastName}\n`
-    let personsFamily= spouseId
-    alert(personsFamily)
-
+        spouseId = `First Name: ${personSpouse[0].firstName}\n`
+        spouseId += `Last Name: ${personSpouse[0].lastName}\n`
+        // return spouseId
+        alert(spouseId)
+    }
 
     let personsParents = person.parents;
     let familyMembers = people.filter(function (el){
         if (el.id === personsParents[0] || el.id == personsParents[1]){
             return true;}});
+
+    if(familyMembers.length != 0) {
+        alert(familyMembers.map(function (person){
+            return `${person.firstName} ${person.lastName}`;
+            })
+            .join("\n"));
+            // return familyMembers;
+        }
+
     if(familyMembers.length == 0){
         alert(`${person.firstName} ${person.lastName} Family: \n
         \n
         No parents in the system.`)}
-    if(familyMembers) {
-        alert(familyMembers.map(function (person){
-            return `${person.firstName} ${person.lastName}`;
-            })
-            .join("\n"))}
 
 
-    let siblingMembers= people.filter(function(el){
-        if(el.parents[0] == person.parents[0] || el.parents[1] == person.parents[1]){
-            return true;
-        }})
-    if(person.parents.length == 0){
-        alert(`${person.firstName} ${person.lastName} Family: \n
-        \n
-        No siblings in the system.`)}
-    if(siblingMembers) {
+    if(person.parents.length != 0) {
+        let siblingMembers= people.filter(function(el){
+            if(el.parents[0] == person.parents[0] && el.parents[1] == person.parents[1]){
+                return true;
+            }})
         alert(siblingMembers.map(function (person){
             return `${person.firstName} ${person.lastName}`;
             })
             .join("\n"))}
-    }
-    return (spouseId, familyMembers, siblingId);
+
+
+    if(person.parents.length == 0){
+        let siblingId=alert(`${person.firstName} ${person.lastName} Family: \n
+        \n
+        No siblings in the system.`)
+        return siblingId;}
+            
+    // let personFamily= `Current Spouse: ${spouseId}, Parents: ${familyMembers}, Siblings ${siblingMembers}`
+    // alert(personFamily)
 }
 

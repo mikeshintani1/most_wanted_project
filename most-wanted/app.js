@@ -197,10 +197,9 @@ function chars(input) {
 
 function findPersonFamily(person, people){
     let spouseId = ''
-    // let siblingId= ''
 
     if (person.currentSpouse == null){
-        return spouseId= 'Current Spouse: Currently Single' }
+        alert( spouseId= 'Current Spouse: Currently Single' )}
 
     else if (person.currentSpouse != null){
         let personFamily = people.filter(function(el){
@@ -209,18 +208,21 @@ function findPersonFamily(person, people){
         }})
         spouseId = `First Name: ${personFamily[0].firstName}\n`
         spouseId += `Last Name: ${personFamily[0].lastName}\n`
-    }
-
-
-    
-
-    // let personSibling= displayPerson.filter(function(el){
-    //     if(person.id == el.parents.includes('')){
-    //         return true
-    //     }
-    // })
-    // siblingId += `First Name: ${personSibling[0].firstName}`
-
-    let personFamily= spouseId
-    alert(personFamily)
+    let personsFamily= spouseId
+    alert(personsFamily)
 }
+
+    let personsParents = person.parents;
+    let familyMembers = people.filter(function (el){
+        if (el.id === personsParents[0] || el.id == personsParents[1]){
+            return true;}});
+    if(familyMembers.length == 0){
+        alert(`${person.firstName} ${person.lastName} Family: \n
+        \n
+        No parents in the system.`)}
+    if(familyMembers) {
+        alert(familyMembers.map(function (person){
+            return `${person.firstName} ${person.lastName}`;
+            })
+            .join("\n"))}
+    return (spouseId, familyMembers);}

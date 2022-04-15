@@ -253,12 +253,34 @@ function findPersonFamily(person, people){
 }
 
 function searchByTraits(people){
+    let traitGender = promptFor('Gender: ', chars)
+    let personGender = people.filter(function (el){
+        if(el.gender == traitGender){
+            return true;
+        }  
+    })
+    alert(personGender.map(function (person){
+        return `${person.firstName} ${person.lastName}`;
+        })
+        .join("\n"))
+
+    let continueSearch = promptFor('Refine Search More? (y/n): ', chars)
+        while(continueSearch == 'y')
+            break;
+        if(continueSearch == 'n')
+            return false;
+    /* as the search refines i want to filter out
+    the names of ppl whos traits have not been called*/
 
     let traitEyeColors = promptFor('eye color: ', chars)
     let personTrait = people.filter(function (el){
-        if(el.eyeColor == traitEyeColors){
-            alert(el.firstName);
-            return true
-        }
+        if(el.parameter == traitEyeColors && traitGender == el.gender){
+            return true;
+        }  
+    })
+    alert(personTrait.map(function (person){
+        return `${person.firstName} ${person.lastName}`;
+        })
+        .join("\n"))
+    }
 
-})}

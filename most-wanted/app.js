@@ -255,6 +255,7 @@ function findPersonFamily(person, people){
 }
 
 function searchByTraits(people){
+    let searchByTrait = ''
     let traitGender = promptFor('Gender: ', chars)
     let personGender = people.filter(function (el){
         if(el.gender == traitGender){
@@ -275,9 +276,9 @@ function searchByTraits(people){
     /* as the search refines i want to filter out
     the names of ppl whos traits have not been called*/
 
-    let traitEyeColors = promptFor('Enter Occupation or Eye Color: ', chars)
-    let personTrait = people.filter(function (el){
-        if(el.eyeColor == traitEyeColors || el.occupation == traitEyeColors && el.gender == personGender){
+    let traitEyeColors = promptFor('Enter a different trait! : ', chars)
+    let personTrait = personGender.filter(function (el){
+        if(el.eyeColor == traitEyeColors || el.occupation == traitEyeColors || el.dob == traitEyeColors || el.gender == personGender || el.height.toString() == traitEyeColors || el.weight.toString() == traitEyeColors){
             return true;
         }  
     })

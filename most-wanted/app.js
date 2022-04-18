@@ -255,96 +255,100 @@ function findPersonFamily(person, people){
 }
 
 function searchByTraits(people){
+    let traitChoose = prompt('Search by trait? yes or no: ')
+    while(traitChoose = 'yes'){
     let optionsForTraits = prompt('Search by: Gender, Eye Color, Occupation, DOB, Weight, Height: ')
     switch (optionsForTraits){
         case "Gender":
             let traitGender = promptFor('Gender: ', chars)
-            let personGender = people.filter(function (el){
+            people = people.filter(function (el){
                 if(el.gender == traitGender){
                     return true;
             }  
             })
-            alert(personGender.map(function (person){
+            alert(people.map(function (person){
                 return `${person.firstName} ${person.lastName}`;
                 })
                 .join("\n"))
+            traitChoose = prompt('keep choosing? yes or no: ')
+            
             break;
                     
     /* as the search refines i want to filter out
     the names of ppl whos traits have not been called*/
         case "Eye Color":
             let traitEyeColors = promptFor('Enter Eye Color or skip: ', chars)
-            let personEyeColor = people.filter(function (el){
+            people = people.filter(function (el){
                 if(el.eyeColor == traitEyeColors)
                     return true;
                         
             })
-            alert(personEyeColor.map(function (person){
+            alert(people.map(function (person){
                 return `${person.firstName} ${person.lastName}`;
                 })
                 .join("\n"))
+            traitChoose = prompt('keep choosing? yes or no: ')
             break;
 
         case "Occupation":
             let traitOccupation = promptFor('Enter Occupation or skip: ', chars)
-            let personOccupation = people.filter(function (el){
+            people = people.filter(function (el){
                 if(el.occupation == traitOccupation)
                     return true;
             })
-            alert(personOccupation.map(function (person){
+            alert(people.map(function (person){
                 return `${person.firstName} ${person.lastName}`;
                 })
                 .join("\n"))
+            traitChoose = prompt('keep choosing? yes or no: ')
             break;
             
        case "DOB":
 
             let traitDob = promptFor('Enter Date of Birth MM/DD/YEAR or skip: ', chars)
-            let personDob = people.filter(function (el){
+            people = people.filter(function (el){
                 if (el.dob == traitDob)
                     return true;
 
             })
-            alert(personDob.map(function (person){
+            alert(people.map(function (person){
                 return `${person.firstName} ${person.lastName}`;
                 })
                 .join("\n"))
+                traitChoose = prompt('keep choosing? yes or no: ')
                 break;
 
         case "Height":
             let traitHeight = promptFor('Enter persons height or skip: ', chars)
-            let personHeight = people.filter(function(el){
+            people = people.filter(function(el){
                 if (el.height.toString() == traitHeight)
                     return true;
 
             })
-            alert(personHeight.map(function (person){
+            alert(people.map(function (person){
                 return `${person.firstName} ${person.lastName}`;
                 })
                 .join("\n"))
+            traitChoose = prompt('keep choosing? yes or no: ')
             break; 
 
         case "Weight":
         
             let traitWeight = promptFor('Enter persons weight: ', chars)
-            let personWeight = people.filter(function(el){
+            people = people.filter(function(el){
                 if (el.weight.toString() == traitWeight)
                     return true;
 
             })
-            alert(personWeight.map(function (person){
+            alert(people.map(function (person){
                 return `${person.firstName} ${person.lastName}`;
                 })
                 .join("\n"))
+                traitChoose = prompt('keep choosing? yes or no: ')
                 break;
         default:
-            return mainMenu
+            treatChoose = prompt('End search')
+            return searchByTraits
 }
-}
-
-
-// let continueSearchTwo = promptFor('Refine Search EVEN More? (y/n): ', chars)
-//     while(continueSearchTwo == 'y')
-//         break;
-//     if(continueSearchTwo == 'n')
-//         return false;
+  
+}}

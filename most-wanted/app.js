@@ -255,42 +255,96 @@ function findPersonFamily(person, people){
 }
 
 function searchByTraits(people){
-    let searchByTrait = ''
-    let traitGender = promptFor('Gender: ', chars)
-    let personGender = people.filter(function (el){
-        if(el.gender == traitGender){
-            return true;
-        }  
-    })
-    alert(personGender.map(function (person){
-        return `${person.firstName} ${person.lastName}`;
-        })
-        .join("\n"))
-
-    let continueSearch = promptFor('Refine Search More? (y/n): ', chars)
-        while(continueSearch == 'y')
+    let optionsForTraits = prompt('Search by: Gender, Eye Color, Occupation, DOB, Weight, Height: ')
+    switch (optionsForTraits){
+        case "Gender":
+            let traitGender = promptFor('Gender: ', chars)
+            let personGender = people.filter(function (el){
+                if(el.gender == traitGender){
+                    return true;
+            }  
+            })
+            alert(personGender.map(function (person){
+                return `${person.firstName} ${person.lastName}`;
+                })
+                .join("\n"))
             break;
-        if(continueSearch == 'n')
-            return false;
-            
+                    
     /* as the search refines i want to filter out
     the names of ppl whos traits have not been called*/
+        case "Eye Color":
+            let traitEyeColors = promptFor('Enter Eye Color or skip: ', chars)
+            let personEyeColor = people.filter(function (el){
+                if(el.eyeColor == traitEyeColors)
+                    return true;
+                        
+            })
+            alert(personEyeColor.map(function (person){
+                return `${person.firstName} ${person.lastName}`;
+                })
+                .join("\n"))
+            break;
 
-    let traitEyeColors = promptFor('Enter a different trait! : ', chars)
-    let personTrait = personGender.filter(function (el){
-        if(el.eyeColor == traitEyeColors || el.occupation == traitEyeColors || el.dob == traitEyeColors || el.gender == personGender || el.height.toString() == traitEyeColors || el.weight.toString() == traitEyeColors){
-            return true;
-        }  
-    })
-    alert(personTrait.map(function (person){
-        return `${person.firstName} ${person.lastName}`;
-        })
-        .join("\n"))
+        case "Occupation":
+            let traitOccupation = promptFor('Enter Occupation or skip: ', chars)
+            let personOccupation = people.filter(function (el){
+                if(el.occupation == traitOccupation)
+                    return true;
+            })
+            alert(personOccupation.map(function (person){
+                return `${person.firstName} ${person.lastName}`;
+                })
+                .join("\n"))
+            break;
+            
+       case "DOB":
 
-let continueSearchTwo = promptFor('Refine Search EVEN More? (y/n): ', chars)
-    while(continueSearchTwo == 'y')
-        break;
-    if(continueSearchTwo == 'n')
-        return false;
+            let traitDob = promptFor('Enter Date of Birth MM/DD/YEAR or skip: ', chars)
+            let personDob = people.filter(function (el){
+                if (el.dob == traitDob)
+                    return true;
+
+            })
+            alert(personDob.map(function (person){
+                return `${person.firstName} ${person.lastName}`;
+                })
+                .join("\n"))
+                break;
+
+        case "Height":
+            let traitHeight = promptFor('Enter persons height or skip: ', chars)
+            let personHeight = people.filter(function(el){
+                if (el.height.toString() == traitHeight)
+                    return true;
+
+            })
+            alert(personHeight.map(function (person){
+                return `${person.firstName} ${person.lastName}`;
+                })
+                .join("\n"))
+            break; 
+
+        case "Weight":
         
-    }
+            let traitWeight = promptFor('Enter persons weight: ', chars)
+            let personWeight = people.filter(function(el){
+                if (el.weight.toString() == traitWeight)
+                    return true;
+
+            })
+            alert(personWeight.map(function (person){
+                return `${person.firstName} ${person.lastName}`;
+                })
+                .join("\n"))
+                break;
+        default:
+            return mainMenu
+}
+}
+
+
+// let continueSearchTwo = promptFor('Refine Search EVEN More? (y/n): ', chars)
+//     while(continueSearchTwo == 'y')
+//         break;
+//     if(continueSearchTwo == 'n')
+//         return false;

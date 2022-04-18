@@ -196,38 +196,39 @@ function chars(input) {
 
 
 function findPersonFamily(person, people){
+    let personFamily= ''
     let spouseId = ''
-    // Working on Repairing the Alert Undefined
+
     if (person.currentSpouse == null){
-        return (spouseId= 'Current Spouse: No Current Spouse')}; 
+        spouseId= 'No Current Spouse'; 
+    };
 
     if (person.currentSpouse != null){
         let personSpouse = people.filter(function(el){
         if(el.id === person.currentSpouse){
-            return true
+            return true;
         }})
-        spouseId = `Cuurent Spouse: ${personSpouse[0].firstName} ${personSpouse[0].lastName}\n`
-        return (spouseId)
+        spouseId = `${personSpouse[0].firstName} ${personSpouse[0].lastName}\n`
     };
 
     let parentId= ''
     let personsParents = person.parents;
     let familyMembers = people.filter(function (el){
         if (el.id === personsParents[0] || el.id == personsParents[1]){
-            return true;}});
+            return true;}
+        });
 
     if(familyMembers.length != 0) {
-        let familyMembers= familyMembers.map(function (person){
-            `${person.firstName} ${person.lastName}`
-            .join("\n")})
+        parentId= (familyMembers.map(function (el){
+            return `${el.firstName} ${el.lastName}`;
+        }).join("\n")
+        )};
 
-        familyMembers = parentId
-        return parentId}
+
 
     if(familyMembers.length == 0){
-        return (parentId= (`${person.firstName} ${person.lastName} Family: \n
-        \n
-        No parents in the system.`))}
+        parentId= `No parents in the system.`;
+    }
 
 
     let siblingId=''
@@ -237,20 +238,20 @@ function findPersonFamily(person, people){
             if(el.parents[0] == person.parents[0] && el.parents[1] == person.parents[1]){
                 return true;
             }})
-        alert(siblingMembers.map(function (person){
+        siblingId = (siblingMembers.map(function (person){
             return `${person.firstName} ${person.lastName}`;
             })
-            .join("\n"))}
+            .join("\n"));
+
+    }
 
 
     if(person.parents.length == 0){
-        let siblingId=alert(`${person.firstName} ${person.lastName} Family: \n
-        \n
-        No siblings in the system.`)
-        return siblingId;}
+        siblingId=`No siblings in the system.`;
+    }
 
-    let personFamily= (`Current Spouse: ${spouseId}\n, Parents: ${parentId}\n, Siblings: ${siblingId}`)
-    alert(personFamily)
+    personFamily= (`${person.firstName} ${person.lastName}'s Family Info\nCurrent Spouse: ${spouseId}\nParents: ${parentId}\nSiblings: ${siblingId}`);
+    return(personFamily);
 }
 
 function searchByTraits(people){

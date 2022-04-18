@@ -352,3 +352,52 @@ function searchByTraits(people){
 }
   
 }}
+
+function findPersonDescendants(person, people){
+    // Looking for the person's descendants
+    // Which means take the person's Id, look to see if they have children
+    // Then, see if those children have kids themselves
+    let personDescendants= ''
+    let childrenInfo= ''
+    let personChildren= people.filter(function(el){
+        if(el.parents.includes(person.id)){
+            return true;
+        }
+        
+    })
+
+    if (personChildren == 0){
+        childrenInfo = `${person.firstName} ${person.lastName} has no descendants`;
+
+    }
+
+    let personGrandChildrenList = ''
+    if (personChildren != 0){
+        childrenInfo = (personChildren.map(function(el){
+            return `${el.firstName} ${el.lastName}`
+        }) .join ("\n"))
+        for ( let children of personChildren){
+            let personGrandChildren = people.filter(function(el){
+                if(el.parents.includes(children.id)){
+                    return true
+                }
+            })
+            personGrandChildrenList = personGrandChildren
+        }
+    }
+
+    let grandChildrenInfo= ''
+
+    if (personGrandChildrenList == 0){
+        grandChildrenInfo = `End of Descendants`
+    }
+
+    if(personGrandChildrenList != 0){
+        grandChildrenInfo = (personGrandChildrenList.map(function(el){
+            return `${el.firstName} ${el.lastName}`;    
+        }).join("\n"))
+    }
+    
+    personDescendants = `${person.firstName} ${person.lastName}'s Descendants Info:\nChildren: ${childrenInfo}\nGrandChildren: ${grandChildrenInfo}`
+    return (personDescendants)
+}
